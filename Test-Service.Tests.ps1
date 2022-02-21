@@ -1,11 +1,11 @@
-Describe "Test-Service" {
-
-    BeforeAll {
+BeforeAll {
         
-        # Load function
-        . .\Test-Service.ps1
+    # Load function
+    . $PSScriptRoot\Test-Service.ps1
 
-    }    
+}    
+
+Describe "Test-Service" {
     
     It "Given the name of a service with a status of 'Running', will return true" {
         
@@ -18,7 +18,7 @@ Describe "Test-Service" {
         Mock 'Get-Service' { $MockRunningService }
         
         Test-Service -Name $MockRunningService.ServiceName | Should -Be $true
-        
+
     }
     
     It "Given the name of a service with a status of 'Stopped', will return false" {
